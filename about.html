@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Teens Solution</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========== GLOBAL STYLES ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      animation: bgGradient 10s ease infinite;
+      background: linear-gradient(135deg, #00bf72, #009e4f, #004d40);
+      background-size: 300% 300%;
+    }
+    @keyframes bgGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container { max-width: 1100px; margin: auto; padding: 3rem 2rem; }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #ffeb3b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    p { line-height: 1.6; font-size: 1rem; }
+
+    /* ========== NAVIGATION ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background: linear-gradient(90deg, #006400, #00b140);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+
+    .nav-logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffeb3b;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+    }
+
+    .nav-menu a:hover, .nav-menu a.active {
+      background: #00bf72;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 1.8rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      height: 60vh;
+      background: url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      margin-top: 70px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .hero h1 {
+      position: relative;
+      font-size: 3rem;
+      z-index: 1;
+      color: #fff;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    }
+
+    /* ========== MISSION & VISION ========== */
+    .mv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .mv-card {
+      background: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform .3s;
+      backdrop-filter: blur(6px);
+    }
+    .mv-card:hover { transform: translateY(-6px); }
+    .mv-card h3 {
+      color: #ffeb3b;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    /* ========== UNITS ========== */
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .unit-card {
+      background: rgba(255,255,255,0.12);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: .3s;
+      backdrop-filter: blur(6px);
+    }
+    .unit-card:hover { transform: translateY(-6px); background: rgba(0,0,0,0.4); }
+
+    /* ========== LEADERS CAROUSEL ========== */
+    .carousel {
+      overflow: hidden;
+      position: relative;
+      margin-top: 2rem;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+    .leader-card {
+      min-width: 250px;
+      margin: 0 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      transition: 0.3s;
+    }
+    .leader-card:hover { transform: translateY(-8px); }
+    .leader-card img {
+      width: 90px; height: 90px; border-radius: 50%; margin-bottom: 1rem;
+      border: 3px solid #ffeb3b; object-fit: cover;
+    }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.6); border: none; color: #fff;
+      font-size: 2rem; padding: 0.3rem 0.7rem; cursor: pointer;
+      border-radius: 50%; z-index: 10;
+    }
+    .carousel-btn:hover { background: rgba(0,0,0,0.8); }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* ========== GALLERY ========== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.4s, filter 0.4s;
+    }
+    .gallery img:hover {
+      transform: scale(1.07);
+      filter: brightness(110%);
+    }
+
+    /* ========== CTA ========== */
+    .cta {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: rgba(0,0,0,0.5);
+      margin-top: 3rem;
+      border-radius: 12px;
+    }
+    .cta h2 { color: #ffeb3b; margin-bottom: 1rem; }
+    .cta p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+    .btn-green {
+      background: #00bf72; color: #fff;
+      padding: 0.7rem 1.5rem;
+      border: none; border-radius: 30px;
+      font-weight: 600; cursor: pointer;
+      transition: .3s;
+    }
+    .btn-green:hover { background: #ffeb3b; color: #000; }
+
+    /* ========== FOOTER ========== */
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.6);
+      font-size: 0.9rem;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        text-align: left;
+        padding: 1rem;
+        z-index: 999;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+    }
+    nav {
+  transition: transform 0.4s ease;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-logo">Teens Solution</div>
+    <div class="menu-btn">&#9776;</div>
+    <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="resources.html">Sermons</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="r.html">Units</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>About Teenagers Department</h1>
+  </section>
+
+  <!-- About -->
+  <section class="container">
+    <h2>Who We Are</h2>
+    <p>The Teenagers Department is a vibrant family of young believers committed to growing in Christ, serving the church, and impacting our generation.</p>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="container">
+    <h2>Our Mission & Vision</h2>
+    <div class="mv-grid">
+      <div class="mv-card">
+        <h3>Our Mission</h3>
+        <p>To empower teenagers spiritually, academically, and socially to fulfill their God-given purpose.</p>
+      </div>
+      <div class="mv-card">
+        <h3>Our Vision</h3>
+        <p>To raise kingdom-minded leaders who will shine as light in every sphere of influence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Units -->
+  <section class="container">
+    <h2>Our Units</h2>
+    <div class="unit-grid">
+      <div class="unit-card">🙏 Prayer Unit</div>
+      <div class="unit-card">🛡️ Protocol Unit</div>
+      <div class="unit-card">🎶 Choir Unit</div>
+      <div class="unit-card">🎥 Media Unit</div>
+      <div class="unit-card">🎭 Drama Unit</div>
+      <div class="unit-card">❤️‍🩹 Counselling</div>
+    </div>
+  </section>
+
+  <!-- Leaders Carousel -->
+  <section class="container">
+    <h2>Meet Our Leaders</h2>
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <div class="carousel-track" id="track">
+        <div class="leader-card"><img src="https://randomuser.me/api/portraits/men/45.jpg"><h4>Mark Guery</h4><p>President</p></div>
+        <div class="leader-card"><img src="https://randomuser.me/api/portraits/women/65.jpg"><h4>Sarah Johnson</h4><p>Vice President</p></div>
+        <div class="leader-card"><img src="https://randomuser.me/api/portraits/men/32.jpg"><h4>Michael Smith</h4><p>Prayer Seceretary</p></div>
+        <div class="leader-card"><img src="https://randomuser.me/api/portraits/women/68.jpg"><h4>Chidera Okafor</h4><p>Seceretary</p></div>
+        <div class="leader-card"><img src="https://randomuser.me/api/portraits/men/28.jpg"><h4>Samuel Eze</h4><p>Financial Seceretary</p></div>
+        <div class="leader-card"><img src="https://randomuser.me/api/portraits/women/23.jpg"><h4>Joy Uche</h4><p>Treasurer</p></div>
+        <div class="leader-card"><img src="https://randomuser.me/api/portraits/men/11.jpg"><h4>Emeka Nwosu</h4><p>Technical Director1</p></div>
+        <div class="leader-card"><img src="https://randomuser.me/api/portraits/women/12.jpg"><h4>Esther Obi</h4><p>Technical Director2</p></div>
+      </div>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="container">
+    <h2>Our Moments</h2>
+    <div class="gallery">
+      <img src="IMAGES/469183916_122127888242517856_3650021535982067829_n.jpg" alt="">
+      <img src="IMAGES/475432076_122145152228517856_8229068497902773156_n.jpg" alt="">
+      <img src="IMAGES/WhatsApp Image 2025-08-17 at 20.41.33_40782616.jpg" alt="">
+      <img src="IMAGES/480130032_122145027626517856_2337182739979572117_n.jpg" alt="">
+      <img src="IMAGES/476445644_122145152054517856_653214056120215042_n.jpg" alt="">
+      <img src="IMAGES/481133412_122146868282517856_8929993840738329358_n.jpg" alt="">
+      <img src="IMAGES/481263044_122148672620517856_7842171504947660199_n.jpg" alt="">
+      <img src="IMAGES/WhatsApp Image 2025-08-07 at 09.31.31_09e31317.jpg" alt="">
+      <img src="IMAGES/WhatsApp Image 2025-08-07 at 09.31.30_a1f09b0c.jpg" alt="">
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="container cta">
+    <h2>Join Us Today!</h2>
+    <p>Be part of the Teens Solution family and discover your God-given purpose while growing in faith.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1ijfoiso1IBb4dmAw4E_YA4ZhjZ5qJHZjpWs8Tjz0IuuOmQ/viewform?usp=dialog" class="btn-green">Get Involved</a>
+  </section>
+
+  <footer>
+    © 2025 Teens Solution — Designed By Victory.
+  </footer>
+
+  <!-- JavaScript -->
+<script>
+  // ======== MOBILE MENU ========
+  const menuBtn = document.querySelector('.menu-btn');
+  const navMenu = document.querySelector('.nav-menu');
+  const nav = document.querySelector('nav');
+
+  menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // ======== HIDE/SHOW NAV ON SCROLL ========
+  let lastScrollTop = 0;
+  window.addEventListener("scroll", function() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > lastScrollTop) {
+      // scrolling down
+      nav.style.transform = "translateY(-100%)";
+    } else {
+      // scrolling up
+      nav.style.transform = "translateY(0)";
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  }, false);
+
+  // ======== CAROUSEL ========
+  const track = document.getElementById('track');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  let index = 0;
+
+  nextBtn.addEventListener('click', () => {
+    const cardWidth = document.querySelector('.leader-card').offsetWidth + 20;
+    index++;
+    if (index > track.children.length - 4) index = 0;
+    track.style.transform = `translateX(-${index * cardWidth}px)`;
+  });
+
+  prevBtn.addEventListener('click', () => {
+    const cardWidth = document.querySelector('.leader-card').offsetWidth + 20;
+    index--;
+    if (index < 0) index = track.children.length - 4;
+    track.style.transform = `translateX(-${index * cardWidth}px)`;
+  });
+</script>
+</body>
+</html>

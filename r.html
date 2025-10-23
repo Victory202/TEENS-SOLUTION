@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Units — Teens Solution</title>
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================
+       THEME & RESET
+    ============================ */
+    :root{
+      --green-1:#064e3b;
+      --green-2:#047857;
+      --green-3:#10b981;
+      --accent:#bbf7d0;
+      --glass: rgba(255,255,255,0.06);
+      --muted: rgba(255,255,255,0.08);
+      --txt: #eafaf0;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(135deg,var(--green-1),var(--green-2),var(--green-3));
+      background-size:300% 300%;
+      animation:bgShift 12s linear infinite;
+      color:var(--txt);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+    @keyframes bgShift {
+      0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
+    }
+    .container{max-width:1100px;margin:0 auto;padding:1.25rem}
+
+    /* ============================
+       HEADER / NAV
+    ============================ */
+    .site-header{
+      position:fixed;left:0;right:0;top:0;z-index:80;
+      background:rgba(0,0,0,0.30);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      transition:top .35s ease, background .25s;
+    }
+    .site-header .container{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand a{
+      font-weight:800;letter-spacing:1px;
+      background:linear-gradient(90deg,var(--accent),#86efac,#22c55e);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;font-size:1.05rem;
+    }
+    .nav{display:flex;align-items:center;gap:.4rem}
+    .nav ul{display:flex;gap:.45rem;list-style:none;margin:0;padding:0;align-items:center}
+    .nav a{color:var(--txt);text-decoration:none;padding:.45rem .6rem;border-radius:7px;font-weight:600;transition:all .14s ease}
+    .nav a:hover{background:rgba(255,255,255,0.03);color:var(--accent);transform:translateY(-2px)}
+    .nav a.active{background:rgba(255,255,255,0.04);color:var(--accent)}
+    .menu-btn{display:none;background:none;border:0;color:var(--txt);font-size:1.35rem;cursor:pointer}
+
+    /* ============================
+       HERO
+    ============================ */
+    .hero{position:relative;height:44vh;min-height:260px;margin-top:64px;display:flex;align-items:center;justify-content:center}
+    .hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=1800&q=80');background-size:cover;background-position:center;filter:brightness(.55)}
+    .hero-inner{position:relative;z-index:4;padding:1.75rem;text-align:center;max-width:980px}
+    .hero h1{margin:0;font-size:clamp(1.4rem,3.2vw,2.4rem)}
+    .hero p{color:rgba(255,255,255,0.92);margin-top:.5rem}
+    .hero .btns{margin-top:1rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-block;padding:.55rem 1rem;border-radius:999px;font-weight:700;text-decoration:none}
+    .btn.primary{background:linear-gradient(90deg,var(--green-2),var(--green-3));color:#032;box-shadow:0 10px 30px rgba(2,6,6,0.16)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--txt)}
+
+    /* ============================
+       PAGE TITLE SECTION
+    ============================ */
+    .section-title{text-transform:uppercase;letter-spacing:1px;color:var(--accent);font-weight:700;margin-bottom:.75rem}
+    .lead{color:rgba(255,255,255,0.92);max-width:56rem;margin:0 auto 1rem}
+
+    /* ============================
+       UNITS GRID
+    ============================ */
+    .units-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .unit-card{
+      background:var(--muted);padding:1rem;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;gap:.6rem;transition:transform .22s,box-shadow .22s;
+      cursor:pointer;
+    }
+    .unit-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,6,6,0.28)}
+    .unit-thumb{width:100%;height:150px;border-radius:8px;object-fit:cover;display:block}
+    .unit-meta{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+    .unit-title{font-weight:700;margin:0;color:#fff}
+    .unit-desc{color:rgba(255,255,255,0.9);font-size:.95rem;margin:0}
+    .unit-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+    .btn.small{padding:.4rem .6rem;font-size:.9rem;border-radius:10px}
+
+    /* ============================
+       CTA BANNER
+    ============================ */
+    .cta{background:linear-gradient(90deg, rgba(6,78,59,0.95), rgba(4,120,87,0.95));padding:1.4rem;border-radius:12px;text-align:center;margin-top:2rem}
+    .cta .cta-btn{background:linear-gradient(90deg,#bbf7d0,#22c55e);color:#042;margin:0;padding:.7rem 1rem;border-radius:999px;font-weight:800;text-decoration:none}
+
+    /* ============================
+       MODAL PREVIEW
+    ============================ */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:999;padding:1rem}
+    .modal-inner{background:#02120f;border-radius:12px;max-width:980px;width:100%;max-height:92vh;overflow:auto;padding:0.6rem}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.6rem;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .modal-body{padding:.9rem}
+    .close-btn{background:transparent;border:0;color:var(--txt);font-size:1.25rem;cursor:pointer}
+
+    /* ============================
+       FOOTER
+    ============================ */
+    footer{padding:2rem 0;background:rgba(0,0,0,0.22);border-top:1px solid rgba(255,255,255,0.03);margin-top:2rem}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+    .socials{display:flex;gap:.5rem}
+    .social{display:inline-block;padding:.45rem .7rem;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--accent);text-decoration:none;font-weight:600}
+    .social:hover{transform:translateY(-3px)}
+
+    /* ============================
+       RESPONSIVE
+    ============================ */
+    @media (max-width:900px){ .hero{height:38vh}.hero-bg{background-position:center} }
+    @media (max-width:768px){
+      .nav ul{display:none;position:absolute;right:1rem;top:64px;background:rgba(0,0,0,0.92);padding:1rem;border-radius:10px;flex-direction:column;min-width:160px}
+      .nav.open ul{display:flex}
+      .menu-btn{display:block}
+      .hero{height:36vh;margin-top:60px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="navbar">
+    <div class="container">
+      <div class="brand"><a href="index.html">TEENS SOLUTION</a></div>
+
+      <nav class="nav" id="nav-links" aria-label="Main navigation">
+        <ul>
+               <li><a href="#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resources.html">Sermons</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="r.html">Units</a></li>
+        </ul>
+      </nav>
+
+      <button id="menu-btn" class="menu-btn" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="homeHero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner container" data-aos="fade-up">
+      <h1>Our Units</h1>
+      <p class="lead">Join a unit — serve, grow in gifts, and build community. Click any unit card to learn more and join.</p>
+      <div class="btns">
+        <a class="btn primary" href="#unitsGrid">Browse Units</a>
+        <a class="btn ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSe1ijfoiso1IBb4dmAw4E_YA4ZhjZ5qJHZjpWs8Tjz0IuuOmQ/viewform?usp=dialog" target="_blank" rel="noopener">Request More Info</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNITS -->
+  <section class="container" id="unitsSection" data-aos="fade-up">
+    <h2 class="section-title">Unit Teams</h2>
+    <p class="lead">Our units are designed for service, growth and fellowship. Pick one and be part of something transformative.</p>
+
+    <div class="units-grid" id="unitsGrid" style="margin-top:1rem;">
+      <!-- Prayer -->
+      <article class="unit-card" data-unit="Prayer" tabindex="0" data-aos="zoom-in">
+        <img class="unit-thumb" src="IMAGES/469176735_122127888380517856_1757997432307109623_n.jpg" alt="Prayer Unit">
+        <div>
+          <div class="unit-meta">
+            <h3 class="unit-title">Prayer Unit</h3>
+            <div class="tag">Spiritual</div>
+          </div>
+          <p class="unit-desc">Intercession, prayer nights and spiritual support for members.</p>
+          <div class="unit-actions">
+            <button class="btn small primary join-btn" data-unit="Prayer">Join</button>
+            <button class="btn small ghost info-btn" data-unit="Prayer">More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Protocol -->
+      <article class="unit-card" data-unit="Protocol" tabindex="0" data-aos="zoom-in" data-aos-delay="80">
+        <img class="unit-thumb" src="IMAGES/protocol.jpg" alt="Protocol Unit">
+        <div>
+          <div class="unit-meta">
+            <h3 class="unit-title">Protocol Unit</h3>
+            <div class="tag">Hospitality</div>
+          </div>
+          <p class="unit-desc">Hosts, welcomes and ensures order during events and services.</p>
+          <div class="unit-actions">
+            <button class="btn small primary join-btn" data-unit="Protocol">Join</button>
+            <button class="btn small ghost info-btn" data-unit="Protocol">More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Choir -->
+      <article class="unit-card" data-unit="Choir" tabindex="0" data-aos="zoom-in" data-aos-delay="160">
+        <img class="unit-thumb" src="IMAGES/choir.jpg" alt="Choir Unit">
+        <div>
+          <div class="unit-meta">
+            <h3 class="unit-title">Choir Unit</h3>
+            <div class="tag">Worship</div>
+          </div>
+          <p class="unit-desc">Lead worship with songs, rehearsals and performance opportunities.</p>
+          <div class="unit-actions">
+            <button class="btn small primary join-btn" data-unit="Choir">Join</button>
+            <button class="btn small ghost info-btn" data-unit="Choir">More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Media -->
+      <article class="unit-card" data-unit="Media" tabindex="0" data-aos="zoom-in" data-aos-delay="240">
+        <img class="unit-thumb" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80" alt="Media Unit">
+        <div>
+          <div class="unit-meta">
+            <h3 class="unit-title">Media Unit</h3>
+            <div class="tag">Production</div>
+          </div>
+          <p class="unit-desc">Audio, video, livestream, social media and creative content.</p>
+          <div class="unit-actions">
+            <button class="btn small primary join-btn" data-unit="Media">Join</button>
+            <button class="btn small ghost info-btn" data-unit="Media">More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Drama -->
+      <article class="unit-card" data-unit="Drama" tabindex="0" data-aos="zoom-in" data-aos-delay="320">
+        <img class="unit-thumb" src="IMAGES/drama.jpeg" alt="Drama Unit">
+        <div>
+          <div class="unit-meta">
+            <h3 class="unit-title">Drama Unit</h3>
+            <div class="tag">Creative</div>
+          </div>
+          <p class="unit-desc">Skits, drama productions and creative storytelling for message impact.</p>
+          <div class="unit-actions">
+            <button class="btn small primary join-btn" data-unit="Drama">Join</button>
+            <button class="btn small ghost info-btn" data-unit="Drama">More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Call to Action (Special) -->
+      <article class="unit-card" data-unit="GetInvolved" tabindex="0" data-aos="zoom-in" data-aos-delay="400">
+        <img class="unit-thumb" src="IMAGES/GET INVOLVED.jpeg" alt="Get Involved">
+        <div>
+          <div class="unit-meta">
+            <h3 class="unit-title">Get Involved</h3>
+            <div class="tag">Start Here</div>
+          </div>
+          <p class="unit-desc">Not sure which unit fits? Join the Get Involved team — rotate through units and find your gift.</p>
+          <div class="unit-actions">
+            <a class="btn small primary" href="https://wa.me/2349167379511" target="_blank" rel="noopener">Message on WhatsApp</a>
+            <a class="btn small ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSe1ijfoiso1IBb4dmAw4E_YA4ZhjZ5qJHZjpWs8Tjz0IuuOmQ/viewform?usp=dialog" target="_blank" rel="noopener">Sign Up Form</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="container" data-aos="fade-up">
+    <div class="cta">
+      <h3 style="margin:0 0 .45rem 0">Want to lead a unit or volunteer?</h3>
+      <p style="margin:0 0 .75rem 0;color:rgba(255,255,255,0.9)">We host training and short-term internships for leaders. Apply below.</p>
+      <a class="cta-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe1ijfoiso1IBb4dmAw4E_YA4ZhjZ5qJHZjpWs8Tjz0IuuOmQ/viewform?usp=dialog" target="_blank" rel="noopener">Apply to Lead / Volunteer</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <p style="margin:0;font-weight:700">TEENS SOLUTION</p>
+        <small style="color:rgba(255,255,255,0.8)">11 Egbenoma Off Osagienoma St, Ugbowo — Benin City, Edo State</small>
+      </div>
+      <div class="socials">
+        <a class="social" href="#" target="_blank" rel="noopener">Facebook</a>
+        <a class="social" href="#" target="_blank" rel="noopener">Instagram</a>
+        <a class="social" href="#" target="_blank" rel="noopener">YouTube</a>
+        <a class="social" href="https://wa.me/2349167379511" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal" style="display:none" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <strong id="modalTitle">Unit</strong>
+        <button class="close-btn" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    AOS.init({ duration:700, once:true });
+
+    /* NAV: mobile toggle + hide on scroll + smooth highlight */
+    (function navSetup(){
+      const header = document.getElementById('navbar');
+      const menuBtn = document.getElementById('menu-btn');
+      const nav = document.getElementById('nav-links');
+      const links = document.querySelectorAll('.nav a');
+      let prevY = window.scrollY;
+
+      // mobile toggle
+      menuBtn.addEventListener('click', () => nav.classList.toggle('open'));
+
+      // hide on scroll and highlight current section
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if(y > prevY && y > 100) header.style.top = '-88px'; else header.style.top = '0';
+        prevY = y;
+
+        // highlight nav links (if those pages/sections exist on index)
+        document.querySelectorAll('section[id]').forEach(sec=>{
+          const top = sec.offsetTop - 160;
+          const bottom = top + sec.offsetHeight;
+          const id = sec.id;
+          if(y >= top && y < bottom){
+            links.forEach(a => a.classList.toggle('active', a.getAttribute('href').endsWith('#'+id) || a.getAttribute('href') === '#'+id ));
+          }
+        });
+      }, {passive:true});
+
+      // smooth scroll for local anchors
+      document.querySelectorAll('.nav a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const href = a.getAttribute('href');
+          if(href && href.startsWith('#')){
+            e.preventDefault();
+            const tgt = document.querySelector(href);
+            if(tgt) tgt.scrollIntoView({behavior:'smooth', block:'start'});
+            nav.classList.remove('open');
+          }
+        });
+      });
+    })();
+
+    /* UNIT MODAL & JOIN buttons */
+    (function units(){
+      const modal = document.getElementById('modal');
+      const modalBody = document.getElementById('modalBody');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalClose = document.getElementById('modalClose');
+
+      // details for units (you can expand)
+      const unitDetails = {
+        'Prayer': {
+          title:'Prayer Unit',
+          img:'https://images.unsplash.com/photo-1524882354400-6e8d5a9f7e6e?auto=format&fit=crop&w=1400&q=80',
+          content:'Focuses on intercession, prayer meetings, and supporting members through prayer. Weekly sessions and training in intercessory prayer.'
+        },
+        'Protocol': {
+          title:'Protocol Unit',
+          img:'https://images.unsplash.com/photo-1484981184820-2e84ea0e3a8b?auto=format&fit=crop&w=1400&q=80',
+          content:'Hosts and ushers, manages guest relations and ensures events run smoothly. Training provided for hospitality and event flow.'
+        },
+        'Choir': {
+          title:'Choir Unit',
+          img:'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=80',
+          content:'Leads worship, rehearses weekly and ministers through music. Open to vocalists and instrumentalists.'
+        },
+        'Media': {
+          title:'Media Unit',
+          img:'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80',
+          content:'Handles audio, video, livestream, and social media. Great for creatives and tech-savvy teens.'
+        },
+        'Drama': {
+          title:'Drama Unit',
+          img:'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1400&q=80',
+          content:'Creates skits and stage productions to communicate gospel messages creatively.'
+        },
+        'GetInvolved': {
+          title:'Get Involved',
+          img:'https://images.unsplash.com/photo-1519750157634-bbb5f1b9f5a3?auto=format&fit=crop&w=1400&q=80',
+          content:'Not sure which unit suits you? Rotate through units, discover your gifting, and then commit to a team.'
+        }
+      };
+
+      // open modal helper
+      function openUnit(unitKey){
+        const u = unitDetails[unitKey];
+        if(!u) return;
+        modalTitle.textContent = u.title;
+        modalBody.innerHTML = `
+          <img src="${u.img}" alt="${u.title}" style="width:100%;height:260px;object-fit:cover;border-radius:8px;margin-bottom:.6rem">
+          <p style="margin:0 0 .6rem;color:rgba(255,255,255,0.95)">${u.content}</p>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <a class="btn primary" href="https://wa.me/2348100000000?text=Hi%20I%27d%20like%20to%20join%20the%20${encodeURIComponent(u.title)}" target="_blank" rel="noopener">Message on WhatsApp</a>
+            <a class="btn ghost" href="https://forms.gle/your-google-form-link" target="_blank" rel="noopener">Sign Up Form</a>
+          </div>
+        `;
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      // wire up info buttons and join buttons
+      document.querySelectorAll('.info-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=> openUnit(btn.dataset.unit));
+      });
+      document.querySelectorAll('.unit-card').forEach(card=>{
+        // open modal on image/title click too
+        card.addEventListener('click', (e)=> {
+          // avoid double-opening when clicking join button (which is handled separately)
+          if(e.target.closest('.join-btn') || e.target.closest('.info-btn') || e.target.tagName === 'A' ) return;
+          const key = card.dataset.unit;
+          openUnit(key);
+        });
+      });
+      document.querySelectorAll('.join-btn').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          const unit = btn.dataset.unit;
+          // prefer WhatsApp
+          window.open('https://wa.me/2348100000000?text=' + encodeURIComponent('Hi, I want to join the ' + unit + ' unit.'), '_blank', 'noopener');
+        });
+      });
+
+      // close handlers
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e)=> { if(e.target === modal) closeModal(); });
+      function closeModal(){ modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+
+      // close on ESC
+      document.addEventListener('keydown', (e)=> { if(e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sermons — Teens Department</title>
+
+  <!-- Google Font + icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --g1:#064e3b; --g2:#047857; --g3:#10b981;
+      --accent:#bbf7d0; --glass: rgba(255,255,255,0.06);
+      --nav-h:64px;
+    }
+    /* NAVBAR STYLING */
+.sticky-nav {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  transition: top 0.3s ease;
+  padding: 0.8rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  color: #a7f3d0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links ul li a:hover {
+  color: #34d399;
+}
+
+/* MOBILE TOGGLE */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+  .nav-links ul {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 5%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: none;
+  }
+
+  .nav-links.active ul {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+}
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      color: #e9fff2;
+      background: linear-gradient(120deg,var(--g1),var(--g2),var(--g3));
+      background-size:300% 300%;
+      animation: bgShift 14s linear infinite;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .container{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+
+    /* NAV */
+    header.sticky-nav{
+      position:fixed;left:0;right:0;top:0;z-index:1200;height:var(--nav-h);
+      display:flex;align-items:center;backdrop-filter: blur(6px);
+      padding:0 14px;transition:transform .28s, background .22s, box-shadow .22s;
+      transform:translateY(0);background:rgba(0,0,0,0.18);border-bottom:1px solid rgba(255,255,255,0.03)
+    }
+    header.sticky-nav.nav--hidden{transform:translateY(-120%)}
+    header.sticky-nav.nav--solid{background:rgba(0,0,0,0.46);box-shadow:0 10px 30px rgba(0,0,0,0.25)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px}
+    .brand{font-weight:800;font-size:1rem;background:linear-gradient(90deg,var(--accent),#86efac,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .nav-links{display:flex;gap:.6rem;align-items:center}
+    .nav-links a{color:#e9fff2;text-decoration:none;padding:.45rem .7rem;border-radius:8px;font-weight:600;font-size:.95rem;transition:all .15s}
+    .nav-links a:hover,.nav-links a.active{background: rgba(255,255,255,0.04); color:var(--accent); transform:translateY(-2px)}
+    .mobile-toggle{display:none;background:transparent;border:0;color:inherit;font-size:1.2rem;cursor:pointer}
+
+    /* HERO */
+    .hero{
+      min-height:44vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;
+      background-image: url('IMAGES/469183916_122127888242517856_3650021535982067829_n.jpg');
+      background-size:cover;background-position:center;padding:calc(var(--nav-h) + 2rem) 1.25rem 3rem;
+    }
+    .hero::after{content:'';position:absolute;inset:0;background: linear-gradient(180deg, rgba(2,6,6,0.6), rgba(2,6,6,0.15));pointer-events:none}
+    .hero-inner{position:relative;z-index:2;max-width:980px;padding:1rem}
+    .hero-title{font-size:clamp(1.6rem,4.2vw,2.6rem);margin:0 0 .6rem;color:#fff;line-height:1.02}
+    .hero-sub{color: rgba(230,255,219,0.95);margin-bottom:12px;font-weight:500}
+    .cta-row{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background: linear-gradient(90deg,var(--accent),#34d399);color:#06281d;padding:.55rem .95rem;border-radius:999px;font-weight:700;text-decoration:none;display:inline-flex;gap:.5rem;align-items:center;box-shadow:0 8px 30px rgba(0,0,0,0.16)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#e7fff2;padding:.45rem .75rem;border-radius:8px;text-decoration:none}
+
+    main{padding-top:18px}
+
+    /* SECTION TITLES */
+    section{padding:2.25rem 0}
+    .section-title{text-transform:uppercase;letter-spacing:.9px;color:#e6ffdb;font-weight:700;margin:0 0 .6rem;text-align:center}
+    .lead{color:rgba(255,255,255,0.92);max-width:48rem;margin:0 auto 1rem;text-align:center}
+
+    /* SEARCH / FILTER */
+    .filters{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:.6rem}
+    .search-input{padding:.6rem .85rem;border-radius:12px;border:0;min-width:220px;background:rgba(255,255,255,0.06);color:#fff}
+    .select{padding:.55rem .8rem;border-radius:12px;border:0;background:rgba(255,255,255,0.06);color:#fff;min-width:160px}
+
+    /* SERMON GRID */
+    .sermon-grid{display:grid;grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));gap:16px;padding:0 1.25rem}
+    .sermon-card{background: rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:330px;border:1px solid rgba(255,255,255,0.03);transition:transform .22s,box-shadow .22s}
+    .sermon-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.25)}
+    .thumb{height:155px;background-size:cover;background-position:center}
+    .sermon-body{padding:12px;display:flex;flex-direction:column;gap:.6rem;flex:1}
+    .meta{color: rgba(230,255,219,0.85);font-weight:600;font-size:.9rem}
+    .title{margin:.1rem 0 .2rem;color:#fff;font-weight:700}
+    .desc{color: rgba(230,255,219,0.9);font-size:.95rem;flex:1}
+    .card-actions{display:flex;gap:.5rem;align-items:center;margin-top:.6rem;flex-wrap:wrap}
+    .action-btn{padding:.45rem .7rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem;display:inline-flex;gap:.5rem;align-items:center}
+    .watch-btn{background:#0f1724;color:#fff;border:1px solid rgba(255,255,255,0.06)}
+    .download-btn{background: linear-gradient(90deg,#bbf7d0,#22c55e);color:#06281d}
+
+    /* leaders auto scroll */
+    .leaders-viewport{overflow:hidden;margin-top:8px}
+    .leaders-track{display:flex;gap:12px;align-items:stretch;will-change:transform}
+    .leaders-track .card{min-width:220px;flex:0 0 220px;display:flex;flex-direction:column;gap:.6rem;align-items:center;padding:12px}
+    .avatar{width:88px;height:88px;border-radius:999px;object-fit:cover;border:3px solid var(--accent)}
+
+    /* gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:8px}
+    .gallery-grid img{width:100%;display:block;border-radius:10px;object-fit:cover;cursor:pointer;transition:transform .25s,box-shadow .25s}
+    .gallery-grid img:hover{transform:scale(1.03);box-shadow:0 12px 28px rgba(0,0,0,0.45)}
+
+    /* CTA */
+    .cta{background:linear-gradient(90deg, rgba(6,78,59,0.92), rgba(4,120,87,0.92));padding:1rem;border-radius:12px;text-align:center;color:#fff;box-shadow:0 16px 40px rgba(2,6,6,0.25)}
+    .cta-btn{background:linear-gradient(90deg,#bbf7d0,#22c55e);color:#06281d;padding:.6rem 1rem;border-radius:999px;text-decoration:none;font-weight:700}
+
+    /* footer */
+    footer{padding:2rem 0;color:rgba(230,255,219,0.95);border-top:1px solid rgba(255,255,255,0.02);text-align:center}
+    .socials{display:flex;gap:12px;justify-content:center;margin-bottom:10px}
+
+    /* modal (video) */
+    .modal-root{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);z-index:1600;padding:16px}
+    .modal-inner{width:100%;max-width:980px;background:#000;border-radius:8px;overflow:hidden;position:relative}
+    .modal-close{position:absolute;top:10px;right:10px;background:#fff;border-radius:999px;border:0;width:36px;height:36px;cursor:pointer;font-weight:700}
+
+ /* NAVBAR */
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 0.8rem 1.5rem;
+  transition: top 0.3s ease;
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  color: #bbf7d0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+/* Links */
+.nav-links {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #34d399;
+}
+
+/* Mobile button */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+    padding: 2rem 0;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<!-- NAV -->
+<header class="sticky-nav" id="navbar">
+  <div class="nav-inner container">
+    <div class="brand">TEENS SOLUTION</div>
+
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resources.html">Sermons</a>
+      <a href="programs.html">Programs</a>
+      <a href="contact.html">Contact</a>
+      <a href="r.html">Units</a>
+    </nav>
+  </div>
+</header>
+
+
+
+  <!-- HERO -->
+  <section class="hero" id="home" role="region" aria-label="Sermons hero">
+    <div class="hero-inner container">
+      <h1 class="hero-title">Sermons & Teachings</h1>
+      <p class="hero-sub">Watch, download notes, and grow. Curated messages for teens — worship, prayer, leadership and life.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#sermon-list"><i class="fa fa-play"></i> Browse Sermons</a>
+        <a class="btn-ghost" href="https://forms.gle/your-google-form-link" target="_blank" rel="noopener">Register for Events</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="container" style="padding-top:8px;">
+    <!-- about small blurb -->
+    <section id="about">
+      <h2 class="section-title">About These Sermons</h2>
+      <p class="lead">Messages are aimed at helping teenagers build a strong faith, discover purpose, and live out Christ-like leadership. Use the search, filter by unit, or watch directly below.</p>
+    </section>
+
+    <!-- filters -->
+    <section aria-label="search and filters">
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div class="filters" role="form" aria-label="Sermon search and filter">
+          <input id="searchInput" class="search-input" placeholder="Search by title or speaker" aria-label="Search sermons">
+          <select id="unitFilter" class="select" aria-label="Filter by unit">
+            <option value="">All Units</option>
+            <option value="general">General</option>
+            <option value="prayer">Prayer</option>
+            <option value="worship">Worship</option>
+            <option value="leadership">Leadership</option>
+            <option value="youth">Youth</option>
+          </select>
+          <select id="sortBy" class="select" aria-label="Sort sermons">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="title">Title (A–Z)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- sermon list -->
+    <section id="sermon-list" data-aos="fade-up">
+      <h2 class="section-title">Recent Sermons</h2>
+      <div id="sermonGrid" class="sermon-grid" aria-live="polite"></div>
+    </section>
+
+    <!-- leaders -->
+    <section id="leaders" data-aos="fade-up">
+      <h2 class="section-title">Meet Our Teachers</h2>
+      <div class="leaders-viewport">
+        <div class="leaders-track" id="leadersTrack" aria-hidden="false">
+          <!-- leaders inserted in HTML for speed -->
+          <div class="card"><img class="avatar" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Okpu Victory"><strong>Mark Guery</strong><small class="muted">Prayer Secretary</small></div>
+          <div class="card"><img class="avatar" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson"><strong>Sarah Johnson</strong><small class="muted">Youth Leader</small></div>
+          <div class="card"><img class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Smith"><strong>Michael Smith</strong><small class="muted">Music Coordinator</small></div>
+          <div class="card"><img class="avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Chidera Okafor"><strong>Chidera Okafor</strong><small class="muted">Outreach</small></div>
+          <div class="card"><img class="avatar" src="https://randomuser.me/api/portraits/men/28.jpg" alt="Samuel Eze"><strong>Samuel Eze</strong><small class="muted">Technical Director</small></div>
+          <div class="card"><img class="avatar" src="https://randomuser.me/api/portraits/women/23.jpg" alt="Joy Uche"><strong>Joy Uche</strong><small class="muted">Welfare</small></div>
+          <div class="card"><img class="avatar" src="https://randomuser.me/api/portraits/men/11.jpg" alt="Emeka Nwosu"><strong>Emeka Nwosu</strong><small class="muted">Media Lead</small></div>
+          <div class="card"><img class="avatar" src="https://randomuser.me/api/portraits/women/12.jpg" alt="Esther Obi"><strong>Esther Obi</strong><small class="muted">Assistant</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- gallery -->
+    <section id="gallery" data-aos="zoom-in">
+      <h2 class="section-title">Moments Captured</h2>
+      <div class="gallery-grid" id="galleryGrid">
+        <img src="IMAGES/469183916_122127888242517856_3650021535982067829_n.jpg" alt="moment">
+        <img src="IMAGES/475432076_122145152228517856_8229068497902773156_n.jpg" alt="moment">
+        <img src="IMAGES/WhatsApp Image 2025-08-07 at 09.31.32_121ea815.jpg" alt="moment">
+        <img src="IMAGES/476445644_122145152054517856_653214056120215042_n.jpg" alt="moment">
+        <img src="IMAGES/481133412_122146868282517856_8929993840738329358_n.jpg" alt="moment">
+        <img src="IMAGES/480130032_122145027626517856_2337182739979572117_n.jpg" alt="moment">
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section data-aos="fade-up">
+      <div class="cta">
+        <h3>Want Sermon Notes Delivered?</h3>
+        <p>Subscribe and we'll share notes and upcoming sermon schedules.</p>
+        <div style="margin-top:10px"><a class="cta-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe1ijfoiso1IBb4dmAw4E_YA4ZhjZ5qJHZjpWs8Tjz0IuuOmQ/viewform?usp=dialog" target="_blank" rel="noopener">Join Mailing List</a></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="socials">
+        <a href="#" aria-label="facebook"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" aria-label="instagram"><i class="fab fa-instagram fa-lg"></i></a>
+        <a href="#" aria-label="youtube"><i class="fab fa-youtube fa-lg"></i></a>
+        <a href="#" aria-label="whatsapp"><i class="fab fa-whatsapp fa-lg"></i></a>
+      </div>
+      <p style="margin:0">© 2025 Teens Department — Goshen. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Modal root -->
+  <div id="modalRoot" style="display:none;"></div>
+
+  <!-- Floating WhatsApp quick link -->
+  <a href="https://wa.me/2348100000000" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:fixed;right:16px;bottom:18px;background:#25D366;color:#fff;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:1500;">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script>
+    // --- Data: Sermons (sample) ---
+    const sermons = [
+      { id:'s1', title:'Walking in Faith', speaker:'Pastor John Doe', date:'Dec 10, 2023', unit:'general', thumb:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=60', youtube:'ysz5S6PUM-U', notes:'Walking in Faith - Key points:\n1. God\'s timing\n2. Trusting Him\n3. Daily practice' },
+      { id:'s2', title:'Prayer that Moves Mountains', speaker:'Sister Jane', date:'Mar 5, 2025', unit:'prayer', thumb:'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1000&q=60', youtube:'dQw4w9WgXcQ', notes:'Prayer notes: prayer posture, intercession steps.' },
+      { id:'s3', title:'Power of Unity', speaker:'Brother Mark', date:'Jan 12, 2025', unit:'leadership', thumb:'IMAGES/469183916_122127888242517856_3650021535982067829_n.jpg', youtube:'J---aiyznGQ', notes:'Unity: 1. humility 2. common vision 3. shared responsibility.' },
+      { id:'s4', title:'Worship That Changes', speaker:'Worship Team', date:'Feb 20, 2025', unit:'worship', thumb:'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=1000&q=60', youtube:'kXYiU_JCYtU', notes:'Worship: heart alignment, song selection, response.' },
+      { id:'s5', title:'Standing Firm in Trials', speaker:'Pastor Mary', date:'Nov 3, 2024', unit:'youth', thumb:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=60', youtube:'V-_O7nl0Ii0', notes:'How to stand firm: faith practices, community support.' },
+      { id:'s6', title:'Called to Serve', speaker:'Deacon Paul', date:'Oct 1, 2024', unit:'service', thumb:'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1000&q=60', youtube:'3JZ_D3ELwOQ', notes:'Service: gifts, time, sacrifice, joy.' }
+    ];
+
+    // --- Utility: create element helper ---
+    function el(tag, attrs={}, html=''){
+      const e = document.createElement(tag);
+      for(const k in attrs) if(k === 'class') e.className = attrs[k]; else e.setAttribute(k, attrs[k]);
+      if(html) e.innerHTML = html;
+      return e;
+    }
+
+    // --- Render sermons ---
+    const grid = document.getElementById('sermonGrid');
+    function render(list){
+      grid.innerHTML = '';
+      if(list.length === 0){
+        grid.appendChild(el('div',{class:'lead'},'No sermons found.'));
+        return;
+      }
+      list.forEach(s=>{
+        const card = el('article',{class:'sermon-card',role:'article'});
+        const thumb = el('div',{class:'thumb'});
+        thumb.style.backgroundImage = `url('${s.thumb}')`;
+        const body = el('div',{class:'sermon-body'});
+        body.innerHTML = `<div><div class="meta">${s.date} • <span class="muted">${s.unit.toUpperCase()}</span></div>
+                          <div class="title">${s.title}</div>
+                          <div class="muted">${s.speaker}</div>
+                          <p class="desc">${s.notes.substring(0,120)}…</p></div>`;
+        const actions = el('div',{class:'card-actions'});
+        const watch = el('a',{href:'#',class:'action-btn watch-btn','data-id':s.id},`<i class="fa fa-play"></i> Watch`);
+        const dl = el('a',{href:'#',class:'action-btn download-btn','data-id':s.id},`<i class="fa fa-download"></i> Download Notes`);
+        const register = el('a',{href:'https://docs.google.com/forms/d/e/1FAIpQLSe1ijfoiso1IBb4dmAw4E_YA4ZhjZ5qJHZjpWs8Tjz0IuuOmQ/viewform?usp=dialog',target:'_blank',class:'action-btn btn-ghost'},`Register`);
+        actions.appendChild(watch); actions.appendChild(dl); actions.appendChild(register);
+        body.appendChild(actions);
+        card.appendChild(thumb); card.appendChild(body);
+        grid.appendChild(card);
+      });
+      attachCardEvents();
+    }
+    render(sermons);
+
+    // --- attach events ---
+    function attachCardEvents(){
+      document.querySelectorAll('.watch-btn').forEach(btn=>{
+        btn.addEventListener('click', e=>{
+          e.preventDefault();
+          const id = btn.dataset.id;
+          const s = sermons.find(x=>x.id === id);
+          if(s) openVideoModal(s.youtube, s.title);
+        });
+      });
+      document.querySelectorAll('.download-btn').forEach(btn=>{
+        btn.addEventListener('click', e=>{
+          e.preventDefault();
+          const id = btn.dataset.id;
+          const s = sermons.find(x=>x.id === id);
+          if(s) downloadFile(`${s.title} - Notes.txt`, `${s.title}\n${s.speaker}\n\n${s.notes}`);
+        });
+      });
+    }
+
+    // --- open video modal ---
+    function openVideoModal(ytId, title='Video'){
+      const root = document.getElementById('modalRoot');
+      root.style.display = 'block';
+      root.innerHTML = '';
+      const modal = el('div',{class:'modal-root'});
+      const inner = el('div',{class:'modal-inner'});
+      inner.innerHTML = `<button class="modal-close" aria-label="Close">✕</button>
+        <div style="position:relative;padding-top:56.25%;"><iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" style="position:absolute;inset:0;border:0;width:100%;height:100%" allow="autoplay; encrypted-media" title="${title}"></iframe></div>`;
+      modal.appendChild(inner);
+      root.appendChild(modal);
+      inner.querySelector('.modal-close').addEventListener('click', ()=> { root.innerHTML=''; root.style.display='none'; });
+      modal.addEventListener('click', e => { if(e.target === modal){ root.innerHTML=''; root.style.display='none'; }});
+    }
+
+    // --- download text file ---
+    function downloadFile(filename, text){
+      const blob = new Blob([text], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    // --- search & filter ---
+    const searchInput = document.getElementById('searchInput');
+    const unitFilter = document.getElementById('unitFilter');
+    const sortBy = document.getElementById('sortBy');
+
+    function applyFilters(){
+      const q = searchInput.value.trim().toLowerCase();
+      const unit = unitFilter.value;
+      const sort = sortBy.value;
+      let list = sermons.slice();
+      if(unit) list = list.filter(s => s.unit.toLowerCase() === unit.toLowerCase());
+      if(q) list = list.filter(s => (s.title + ' ' + s.speaker + ' ' + s.notes).toLowerCase().includes(q));
+      if(sort === 'newest') list = list.sort((a,b)=> new Date(b.date) - new Date(a.date));
+      else if(sort === 'oldest') list = list.sort((a,b)=> new Date(a.date) - new Date(b.date));
+      else if(sort === 'title') list = list.sort((a,b)=> a.title.localeCompare(b.title));
+      render(list);
+    }
+
+    [searchInput, unitFilter, sortBy].forEach(elm => elm.addEventListener('input', applyFilters));
+
+    // --- leaders auto-scroll (duplicate children) ---
+    (function leadersAuto(){
+      const track = document.getElementById('leadersTrack');
+      if(!track) return;
+      const children = Array.from(track.children);
+      children.forEach(n => track.appendChild(n.cloneNode(true)));
+      let px = 0; const speed = 0.35;
+      function step(){
+        // pause when hovered
+        if(track.dataset.paused === '1'){ requestAnimationFrame(step); return; }
+        px += speed;
+        if(px >= track.scrollWidth/2) px = 0;
+        track.style.transform = `translateX(${-px}px)`;
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      track.addEventListener('mouseenter', ()=> track.dataset.paused = '1');
+      track.addEventListener('mouseleave', ()=> delete track.dataset.paused);
+    })();
+
+    // --- gallery modal ---
+    (function galleryModal(){
+      const gallery = document.getElementById('galleryGrid');
+      if(!gallery) return;
+      gallery.querySelectorAll('img').forEach(img=>{
+        img.addEventListener('click', ()=> {
+          const root = document.getElementById('modalRoot');
+          root.style.display = 'block';
+          root.innerHTML = `<div class="modal-root"><div class="modal-inner" style="max-width:920px"><button class="modal-close">✕</button><img src="${img.src}" style="width:100%;height:auto;display:block;border-radius:8px"></div></div>`;
+          root.querySelector('.modal-close').addEventListener('click', ()=> { root.innerHTML=''; root.style.display='none'; });
+          root.addEventListener('click', e => { if(e.target === root){ root.innerHTML=''; root.style.display='none'; }});
+        });
+      });
+    })();
+
+    // --- nav hide on scroll & mobile toggle ---
+    (function navBehavior(){
+      const nav = document.getElementById('navbar');
+      const mobileToggle = document.getElementById('mobileToggle');
+      const navLinks = document.getElementById('navLinks');
+      let lastY = window.pageYOffset || document.documentElement.scrollTop;
+      let ticking = false; const threshold = 80;
+      function update(){
+        const currentY = window.pageYOffset || document.documentElement.scrollTop;
+        if(currentY > 10) nav.classList.add('nav--solid'); else nav.classList.remove('nav--solid');
+        if(currentY > lastY && currentY > threshold) nav.classList.add('nav--hidden'); else nav.classList.remove('nav--hidden');
+        lastY = Math.max(0,currentY);
+        ticking=false;
+      }
+      window.addEventListener('scroll', ()=> { if(!ticking){ requestAnimationFrame(update); ticking=true }}, {passive:true});
+      if(mobileToggle){
+        mobileToggle.addEventListener('click', ()=>{
+          nav.classList.toggle('nav--open');
+          if(nav.classList.contains('nav--open')){ navLinks.style.display='flex'; mobileToggle.innerHTML='<i class="fa fa-times"></i>'; }
+          else { navLinks.style.display=''; mobileToggle.innerHTML='<i class="fa fa-bars"></i>'; }
+        });
+      }
+    })();
+
+    // --- init: small delay for AOS like feel (we did not include AOS here) ---
+    document.addEventListener('DOMContentLoaded', ()=> {
+      // initially sort newest
+      sortBy.value = 'newest';
+      applyFilters();
+    });
+  
+  const toggle = document.getElementById("mobileToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  toggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+  // Hide navbar when scrolling down, show when scrolling up
+  let prevScroll = window.pageYOffset;
+  const navbar = document.getElementById("navbar");
+  window.addEventListener("scroll", () => {
+    let currentScroll = window.pageYOffset;
+    if (prevScroll < currentScroll) {
+      navbar.style.top = "-80px"; // hide
+    } else {
+      navbar.style.top = "0"; // show
+    }
+    prevScroll = currentScroll;
+  });
+toggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  document.body.classList.toggle("menu-open");
+});
+
+
+  </script>
+</body>
+</html>

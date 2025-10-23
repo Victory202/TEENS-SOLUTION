@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Teenagers Department</title>
+  <link rel="stylesheet" href="main.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #004d7a 0%, #008793 50%, #00bf72 100%);
+      min-height: 100vh;
+      color: #f9ffff;
+      transition: background 1s;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h2 {
+      color: #00e5ff;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    h3, h4 {
+      color: #4dd0e1;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Navigation */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(90deg, #003459 0%, #007ea7 100%);
+      border-radius: 0 0 1rem 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      margin-bottom: 1rem;
+    }
+    .nav-logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #00e5ff;
+      letter-spacing: 2px;
+    }
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-menu li a {
+      color: #f9ffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+    }
+    .nav-menu li a.active,
+    .nav-menu li a:hover {
+      background: #00bf72;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0,191,114,0.3);
+    }
+
+    /* Hero */
+    .hero-slider {
+      position: relative;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(120deg, #004d7a 0%, #000 100%);
+      overflow: hidden;
+    }
+    .hero-slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      filter: brightness(0.7);
+    }
+    .hero-slider .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      background: rgba(0,126,167,0.7);
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+    }
+
+    /* Leaders */
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .leader-card {
+      background: linear-gradient(135deg, #007ea7 30%, #00bf72 100%);
+      border-radius: 1rem;
+      text-align: center;
+      padding: 2rem 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .leader-card:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 24px rgba(0,191,114,0.4);
+    }
+    .leader-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #00e5ff;
+    }
+
+    /* Unit cards / values */
+    .unit-card {
+      background: linear-gradient(120deg, #003459 0%, #007ea7 100%);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      color: #f9ffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .unit-card:hover {
+      background: linear-gradient(120deg, #00bf72 0%, #007ea7 100%);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0,191,114,0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #003459 0%, #007ea7 100%);
+      color: #00e5ff;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 1rem; }
+      .nav { flex-direction: column; gap: 1rem; }
+      .nav-menu { flex-direction: column; gap: 0.5rem; }
+      .hero-slider .overlay { font-size: 1.5rem; padding: 0.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+ </head> <body> <!-- Navigation --> <header class="sticky-nav"> <nav class="nav container"> <div class="nav-logo">Teenagers Dept</div> <ul class="nav-menu"> <li><a href="index.html#home">Home</a></li> <li><a href="index.html#sermons">Sermons</a></li> <li><a href="index.html#units">Units</a></li> <li><a href="index.html#leaders">Leaders</a></li> <li><a href="index.html#gallery">Gallery</a></li> <li><a href="index.html#contact">Contact</a></li> <li><a href="about.html" class="active">About Us</a></li> </ul> </nav> </header> <!-- Hero Section --> <section class="hero-slider" style="height: 50vh;" data-aos="fade-down"> <div class="slide active"> <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80" alt="About Us Banner"> <div class="overlay">About Teenagers Department</div> </div> </section> <!-- About Section --> <section class="reveal" data-aos="fade-up"> <div class="container"> <h2>Who We Are</h2> <p> The Teenagers Department is a vibrant family of young believers committed to growing in Christ, serving the church, and impacting our generation. We believe in nurturing talents, building strong foundations in the Word of God, and preparing teenagers to be effective leaders in the Kingdom. </p> </div> </section> <!-- Vision & Mission --> <section class="reveal" data-aos="fade-up"> <div class="container"> <h2>Our Vision & Mission</h2> <div class="gallery-grid"> <div class="unit-card" data-aos="zoom-in"> <h3>Vision</h3> <p> To raise a generation of teenagers who are spiritually grounded, morally upright, and empowered to influence their world for Christ. We envision a community where every teenager discovers their purpose and walks boldly in faith. </p> </div> <div class="unit-card" data-aos="zoom-in" data-aos-delay="100"> <h3>Mission</h3> <p> To create an atmosphere of worship, service, and fellowship where teenagers can discover their gifts, build godly friendships, and grow into responsible leaders. We are committed to mentoring, equipping, and inspiring teens to make a lasting impact in their families, schools, and society. </p> </div> </div> </div> </section> <!-- Leaders Section (8 Leaders with sample images) --> <section class="reveal" data-aos="fade-up"> <div class="container"> <h2>Meet Our Leaders</h2> <div class="leaders-grid"> <div class="leader-card" data-aos="flip-left"> <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Okpu Victory"> <h4>Okpu Victory</h4> <p>Prayer Secretary</p> </div> <div class="leader-card" data-aos="flip-left" data-aos-delay="50"> <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson"> <h4>Sarah Johnson</h4> <p>Youth Leader</p> </div> <div class="leader-card" data-aos="flip-left" data-aos-delay="100"> <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Smith"> <h4>Michael Smith</h4> <p>Music Coordinator</p> </div> <div class="leader-card" data-aos="flip-left" data-aos-delay="150"> <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Chidera Okafor"> <h4>Chidera Okafor</h4> <p>Outreach Coordinator</p> </div> <div class="leader-card" data-aos="flip-left" data-aos-delay="200"> <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Emeka Nwosu"> <h4>Emeka Nwosu</h4> <p>Media Lead</p> </div> <div class="leader-card" data-aos="flip-left" data-aos-delay="250"> <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Joy Uche"> <h4>Joy Uche</h4> <p>Welfare Secretary</p> </div> <div class="leader-card" data-aos="flip-left" data-aos-delay="300"> <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Samuel Eze"> <h4>Samuel Eze</h4> <p>Technical Director</p> </div> <div class="leader-card" data-aos="flip-left" data-aos-delay="350"> <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Esther Obi"> <h4>Esther Obi</h4> <p>Assistant Youth Leader</p> </div> </div> </div> </section> <!-- Core Values --> <section class="reveal" data-aos="fade-up"> <div class="container"> <h2>Our Core Values</h2> <div class="gallery-grid"> <div class="unit-card" data-aos="fade-right"> <h3>Faith</h3> <p>We trust in God’s Word as the foundation of our lives and decisions.</p> </div> <div class="unit-card" data-aos="fade-right" data-aos-delay="50"> <h3>Service</h3> <p>We believe every teenager has a role in serving God and others.</p> </div> <div class="unit-card" data-aos="fade-right" data-aos-delay="100"> <h3>Excellence</h3> <p>We strive to honor God by giving our best in all we do.</p> </div> <div class="unit-card" data-aos="fade-right" data-aos-delay="150"> <h3>Love</h3> <p>We create a family environment where love and unity are our culture.</p> </div> </div> </div> </section> <!-- Leadership Quote --> <section class="reveal" style="background:#1a0033;" data-aos="zoom-in"> <div class="container" style="text-align:center;"> <blockquote style="font-size:1.2rem; font-style:italic; color:#b39ddb; max-width:800px; margin:auto;"> "We believe that teenagers are not just the church of tomorrow but a powerful force in the church of today." </blockquote> <p style="margin-top:1rem; font-weight:600; color:#9575cd;">— Teenagers Department Leadership</p> </div> </section> <!-- Footer --> <footer> <p>&copy; 2025 Teenagers Department. All Rights Reserved.</p> </footer> <!-- AOS Animation JS --> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <script> AOS.init({ duration: 1000, once: true }); </script> </body> </html>
+</body>
+</html>
